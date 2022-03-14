@@ -15,6 +15,8 @@ FROM ubuntu:impish
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common \
  && add-apt-repository -y ppa:willat8/gphoto \
  && apt-get install -y gphotofs \
+ && apt-get purge software-properties-common \
+ && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /gphotos-uploader-cli-main/gphotos-uploader-cli /usr/bin
